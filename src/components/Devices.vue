@@ -3,9 +3,11 @@
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
     <div id="app1">
       <v-client-table :columns="columns" :data="devices" :options="options">
-        <a slot="upvote" slot-scope="props" class="fa fa-thumbs-up fa-2x" @click="upvote(props.row._id)"></a>
+        <a slot="upvote" slot-scope="props" class="fa fa-thumbs-up fa-2x" @click="upvote(props.row._id)">
+        </a>
         <a slot="remove" slot-scope="props" class="fa fa-trash-o fa-2x" @click="deleteDevice(props.row._id)"></a>
         <a slot="edit" slot-scope="props" class="fa fa-edit fa-2x" @click="editDevice(props.row._id)"></a>
+
       </v-client-table>
     </div>
   </div>
@@ -28,6 +30,7 @@ export default {
       errors: [],
       columns: ['_id', 'producttype', 'productname', 'upvotes', 'rating', 'price', 'specs', 'upvote', 'edit', 'remove'],
       options: {
+        childRow: 'upvote',
         perPage: 10,
         filterable: ['id', 'producttype', 'productname', 'upvotes', 'rating', 'price'],
         sortable: ['upvote'],
