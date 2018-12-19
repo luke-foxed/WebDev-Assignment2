@@ -14,6 +14,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "animejs": "latest",
     "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.11",
     "particlesjs": "^2.2.3",
@@ -22,13 +23,14 @@
     "vue": "^2.5.2",
     "vue-anime": "^1.0.0",
     "vue-animejs": "^1.0.2",
+    "vue-burger-menu": "^1.0.9",
     "vue-router": "^3.0.1",
     "vue-sweetalert": "^0.1.18",
     "vue-sweetalert2": "^1.5.9",
     "vue-tables-2": "^1.4.70",
     "vueform": "^2.0.0",
     "vuelidate": "^0.7.4",
-    "animejs": "latest"
+    "vuesax": "^3.8.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

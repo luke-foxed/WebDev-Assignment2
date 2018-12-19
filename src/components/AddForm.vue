@@ -1,6 +1,6 @@
 <template>
   <div id="app1" class="hero">
-    <h3 class="vue-title"><i class="fa fa-money" style="padding: 3px"></i>{{messagetitle}}</h3>
+    <h3 class="vue-title"><i class="fa fa-plus-square" style="padding: 3px"></i>{{messagetitle}}</h3>
     <div class="container mt-3 mt-sm-5">
       <div class="row justify-content-center">
         <div class="col-md-6">
@@ -26,9 +26,39 @@
             <div class="error" v-if="!$v.rating.between">Rating must be greater than 0</div>
             <div class="form-group" :class="{ 'form-group--error': $v.rating.$error }">
               <label class="form-control-label" name="rating">Rating (Must be greater than 0)</label>
-              <input class="form__input" type="rating" v-model.trim="rating"/>
+              <input class="form__input" type="number" v-model.trim="rating"/>
             </div>
             <div class="error" v-if="!$v.rating.between">Rating must be greater than 0</div>
+
+            <div class="form-group" :class="{ 'form-group--error': $v.ram.$error }">
+              <label class="form-control-label" name="ram">RAM (Must be greater than 0)</label>
+              <input class="form__input" type="number" v-model.trim="ram"/>
+            </div>
+            <div class="error" v-if="!$v.ram.between">RAM must be greater than 0</div>
+
+            <div class="form-group" :class="{ 'form-group--error': $v.camera.$error }">
+              <label class="form-control-label" name="camera">Camera (Must be greater than 0)</label>
+              <input class="form__input" type="number" v-model.trim="camera"/>
+            </div>
+            <div class="error" v-if="!$v.camera.between">Camera must be greater than 0</div>
+
+            <div class="form-group" :class="{ 'form-group--error': $v.processor }">
+              <label class="form-control-label" name="processor">Processor</label>
+              <input class="form__input" v-model.trim="processor"/>
+            </div>
+
+            <div class="form-group" :class="{ 'form-group--error': $v.screen.$error }">
+              <label class="form-control-label" name="screen">Screen (Must be greater than 0)</label>
+              <input class="form__input" type="number" v-model.trim="screen"/>
+            </div>
+            <div class="error" v-if="!$v.screen.between">Screen must be greater than 0</div>
+
+            <div class="form-group" :class="{ 'form-group--error': $v.battery.$error }">
+              <label class="form-control-label" name="battery">Battery (Must be greater than 0)</label>
+              <input class="form__input" type="number" v-model.trim="battery"/>
+            </div>
+            <div class="error" v-if="!$v.battery.between">Screen must be greater than 0</div>
+
             <p>
               <button class="btn btn-secondary btn1" type="submit" :disabled="submitStatus === 'PENDING'">Add Device
               </button>
@@ -67,11 +97,16 @@ export default {
       devicetype: '',
       messagetitle: ' Add Device ',
       devicename: '',
-      paymenttype: 'Direct',
       price: 0,
       upvotes: 0,
       rating: 0,
-      specs: {},
+      specs: {
+        processor: '',
+        ram: 0,
+        camera: 0,
+        screen: 0,
+        battery: 0
+      },
       props: ['deviceBtnTitle'],
       submitStatus: null
     }
@@ -86,6 +121,22 @@ export default {
       between: between(1, 1000)
     },
     rating: {
+      required,
+      between: between(1, 1000)
+    },
+    ram: {
+      required,
+      between: between(1, 1000)
+    },
+    camera: {
+      required,
+      between: between(1, 1000)
+    },
+    screen: {
+      required,
+      between: between(1, 1000)
+    },
+    battery: {
       required,
       between: between(1, 1000)
     }
@@ -103,7 +154,14 @@ export default {
           this.submitStatus = 'OK'
           var adddevice = {
             producttype: this.devicetype,
-            specs: this.specs,
+            specs: [{
+              battery: this.battery,
+              camera: this.camera,
+              screen: this.screen,
+              processor: this.processor,
+              ram: this.ram
+            }
+            ],
             price: this.price,
             upvotes: this.upvotes,
             productname: this.devicename,

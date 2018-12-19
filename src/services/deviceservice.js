@@ -23,5 +23,12 @@ export default {
       JSON.stringify(device, null, 5))
     return Api().put(`/products/${id}/edit`, device,
       { headers: {'Content-type': 'application/json'} })
+  },
+  addUser (user) {
+    return Api().post('/useraccounts/addUser', user,
+      {headers: {'Content-type': 'application/json'}})
+  },
+  fetchUsers () {
+    return Api().get('/useraccounts')
   }
 }

@@ -1,10 +1,8 @@
 <template>
-  <div id="app1" class="hero">
+  <div id="app" class="hero">
     <div class="container mt-3 mt-sm-5">
       <div class="row justify-content-center">
-        <div class="col-md-6">
           <device-form :device="device" deviceBtnTitle="Add Device" @device-is-created-updated="submitDevice"></device-form>
-        </div><!-- /col -->
       </div><!-- /row -->
     </div><!-- /container -->
   </div>
@@ -35,11 +33,16 @@ export default {
       devicetype: '',
       messagetitle: ' Add Device ',
       devicename: '',
-      paymenttype: 'Direct',
       price: 0,
       upvotes: 0,
       rating: 0,
-      specs: {},
+      specs: {
+        processor: '',
+        ram: 0,
+        camera: 0,
+        screen: 0,
+        battery: 0
+      },
       submitStatus: null
     }
   },
@@ -62,7 +65,7 @@ export default {
 </script>
 
 <style scoped>
-  #app1 {
+  #app {
     width: 95%;
     margin: 0 auto;
   }

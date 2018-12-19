@@ -6,6 +6,7 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import burger from 'vue-burger-menu'
 
 import VueParticles from 'vue-particles'
 import VueAnime from 'vue-animejs'
@@ -13,6 +14,7 @@ import VueAnime from 'vue-animejs'
 Vue.use(BootstrapVue)
 Vue.use(VueParticles)
 Vue.use(VueAnime)
+Vue.use(burger)
 
 Vue.config.productionTip = false
 
