@@ -37,13 +37,16 @@ export default {
       price: 0,
       upvotes: 0,
       rating: 0,
-      specs: {
-        processor: '',
-        ram: 0,
-        camera: 0,
-        screen: 0,
-        battery: 0
-      },
+      specs: [
+        {
+          batterysize: 0,
+          cameraquality: 0,
+          screensize: 0,
+          processor: '',
+          ram: 0
+        }
+      ],
+
       submitStatus: null
     }
   },
@@ -55,6 +58,7 @@ export default {
       DeviceService.postDevice(device)
         .then(response => {
           console.log(response)
+          console.log('Added device to database', device)
         })
         .catch(error => {
           this.errors.push(error)

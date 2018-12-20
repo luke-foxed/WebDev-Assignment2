@@ -38,28 +38,28 @@
             </div>
             <div class="error" v-if="!$v.ram.between">RAM must be greater than 0</div>
 
-            <div class="form-group" :class="{ 'form-group--error': $v.camera.$error }">
-              <label class="form-control-label" name="camera">Camera </label>
-              <input class="form__input" type="number" v-model.trim="camera"/>
+            <div class="form-group" :class="{ 'form-group--error': $v.cameraquality.$error }">
+              <label class="form-control-label" name="cameraquality">Camera Quality </label>
+              <input class="form__input" type="number" v-model.trim="cameraquality"/>
             </div>
-            <div class="error" v-if="!$v.camera.between">Camera must be greater than 0</div>
+            <div class="error" v-if="!$v.cameraquality.between">Camera Quality must be greater than 0</div>
 
             <div class="form-group" :class="{ 'form-group--error': $v.processor }">
               <label class="form-control-label" name="processor">Processor</label>
               <input class="form__input" v-model.trim="processor"/>
             </div>
 
-            <div class="form-group" :class="{ 'form-group--error': $v.screen.$error }">
-              <label class="form-control-label" name="screen">Screen</label>
-              <input class="form__input" type="number" v-model.trim="screen"/>
+            <div class="form-group" :class="{ 'form-group--error': $v.screensize.$error }">
+              <label class="form-control-label" name="screensize">Screen Size</label>
+              <input class="form__input" type="number" v-model.trim="screensize"/>
             </div>
-            <div class="error" v-if="!$v.screen.between">Screen must be greater than 0</div>
+            <div class="error" v-if="!$v.screensize.between">Screen Size must be greater than 0</div>
 
-            <div class="form-group" :class="{ 'form-group--error': $v.battery.$error }">
-              <label class="form-control-label" name="battery">Battery </label>
-              <input class="form__input" type="number" v-model.trim="battery"/>
+            <div class="form-group" :class="{ 'form-group--error': $v.batterysize.$error }">
+              <label class="form-control-label" name="batterysize">Battery Size </label>
+              <input class="form__input" type="number" v-model.trim="batterysize"/>
             </div>
-            <div class="error" v-if="!$v.battery.between">Battery must be greater than 0</div>
+            <div class="error" v-if="!$v.batterysize.between">Battery Size must be greater than 0</div>
 
             <p>
               <button class="btn btn-secondary btn1" type="submit" :disabled="submitStatus === 'PENDING'">Add Device
@@ -102,13 +102,15 @@ export default {
       price: 0,
       upvotes: 0,
       rating: 0,
-      specs: {
-        processor: '',
-        ram: 0,
-        camera: 0,
-        screen: 0,
-        battery: 0
-      },
+      specs: [
+        {
+          batterysize: 0,
+          cameraquality: 0,
+          screensize: 0,
+          processor: ' ',
+          ram: 0
+        }
+      ],
       props: ['deviceBtnTitle'],
       submitStatus: null
     }
@@ -130,15 +132,15 @@ export default {
       required,
       between: between(1, 1000)
     },
-    camera: {
+    cameraquality: {
       required,
       between: between(1, 1000)
     },
-    screen: {
+    screensize: {
       required,
       between: between(1, 1000)
     },
-    battery: {
+    batterysize: {
       required,
       between: between(1, 1000)
     }
@@ -156,14 +158,15 @@ export default {
           this.submitStatus = 'OK'
           var adddevice = {
             producttype: this.devicetype,
-            specs: [{
-              battery: this.battery,
-              camera: this.camera,
-              screen: this.screen,
-              processor: this.processor,
-              ram: this.ram
-            }
-            ],
+            specs:
+              {
+                batterysize: this.batterysize,
+                cameraquality: this.cameraquality,
+                screensize: this.screensize,
+                processor: this.processor,
+                ram: this.ram
+              },
+
             price: this.price,
             upvotes: this.upvotes,
             productname: this.devicename,

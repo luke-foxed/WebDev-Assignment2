@@ -35,7 +35,7 @@ export default {
       props: ['_id'],
       devices: [],
       errors: [],
-      columns: ['_id', 'producttype', 'productname', 'upvotes', 'rating', 'price', 'specs', 'upvote', 'edit', 'remove', 'view'],
+      columns: ['_id', 'producttype', 'productname', 'upvotes', 'rating', 'price', 'upvote', 'edit', 'remove'],
       options: {
         childRow: 'upvote',
         perPage: 10,
@@ -48,7 +48,6 @@ export default {
           upvotes: 'Upvotes',
           rating: 'Rating',
           price: 'Price',
-          specs: 'Specs',
           upvote: 'Upvote',
           edit: 'Edit',
           remove: 'Remove'

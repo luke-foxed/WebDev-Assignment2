@@ -39,14 +39,14 @@
 </template>
 
 <script>
-  import Vue from 'vue'
-  import VueForm from 'vueform'
-  import Vuelidate from 'vuelidate'
-  import VueSweetalert from 'vue-sweetalert'
-  import DeviceService from '@/services/deviceservice'
-  import {minLength, required} from 'vuelidate/lib/validators'
+import Vue from 'vue'
+import VueForm from 'vueform'
+import Vuelidate from 'vuelidate'
+import VueSweetalert from 'vue-sweetalert'
+import DeviceService from '@/services/deviceservice'
+import {minLength, required} from 'vuelidate/lib/validators'
 
-  Vue.use(VueForm, {
+Vue.use(VueForm, {
   inputClasses: {
     valid: 'form-control-success',
     invalid: 'form-control-danger'
