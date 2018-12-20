@@ -44,81 +44,81 @@
   import Vuelidate from 'vuelidate'
   import VueSweetalert from 'vue-sweetalert'
   import DeviceService from '@/services/deviceservice'
-  import {required, minLength} from 'vuelidate/lib/validators'
+  import {minLength, required} from 'vuelidate/lib/validators'
 
   Vue.use(VueForm, {
-    inputClasses: {
-      valid: 'form-control-success',
-      invalid: 'form-control-danger'
+  inputClasses: {
+    valid: 'form-control-success',
+    invalid: 'form-control-danger'
+  }
+})
+
+Vue.use(Vuelidate)
+Vue.use(VueSweetalert)
+
+export default {
+  name: 'CreateAccount',
+  data () {
+    return {
+      messagetitle: ' Create Account ',
+      username: '',
+      email: '',
+      password: '',
+      props: ['deviceBtnTitle'],
+      submitStatus: null
     }
-  })
-
-  Vue.use(Vuelidate)
-  Vue.use(VueSweetalert)
-
-  export default {
-    name: 'CreateAccount',
-    data () {
-      return {
-        messagetitle: ' Create Account ',
-        username: '',
-        email: '',
-        password: '',
-        props: ['deviceBtnTitle'],
-        submitStatus: null
+  },
+  validations: {
+    username: {
+      required,
+      minLength: minLength(5)
+    },
+    email: {
+      required,
+      minLength: minLength(5)
+    },
+    password: {
+      required,
+      minLength: minLength(5)
+    }
+  },
+  methods: {
+    submit () {
+      console.log('submit!')
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        this.submitStatus = 'ERROR'
+      } else {
+        // do your submit logic here
+        this.submitStatus = 'PENDING'
+        setTimeout(() => {
+          this.submitStatus = 'OK'
+          var user = {
+            username: this.username,
+            email: this.email,
+            password: this.password
+          }
+          this.user = user
+          console.log('Submitting in UserForm : ' + JSON.stringify(this.user, null, 5))
+          this.submitUser(this.user)
+        }, 500)
       }
     },
-    validations: {
-      username: {
-        required,
-        minLength: minLength(5)
-      },
-      email: {
-        required,
-        minLength: minLength(5)
-      },
-      password: {
-        required,
-        minLength: minLength(5)
-      }
-    },
-    methods: {
-      submit () {
-        console.log('submit!')
-        this.$v.$touch()
-        if (this.$v.$invalid) {
-          this.submitStatus = 'ERROR'
-        } else {
-          // do your submit logic here
-          this.submitStatus = 'PENDING'
-          setTimeout(() => {
-            this.submitStatus = 'OK'
-            var user = {
-              username: this.username,
-              email: this.email,
-              password: this.password
-            }
-            this.user = user
-            console.log('Submitting in UserForm : ' + JSON.stringify(this.user, null, 5))
-            this.submitUser(this.user)
-          }, 500)
-        }
-      },
-      submitUser: function (user) {
-        console.log('submitUser!')
-        console.log('Submitting in submitUser : ' + user)
-        DeviceService.addUser(user)
-          .then(response => {
-            // JSON responses are automatically parsed.
-            console.log(response)
-          })
-          .catch(error => {
-            this.errors.push(error)
-            console.log(error)
-          })
-      }
+    submitUser: function (user) {
+      console.log('submitUser!')
+      console.log('Submitting in submitUser : ' + user)
+      DeviceService.addUser(user)
+        .then(response => {
+          // JSON responses are automatically parsed.
+          console.log(response)
+        })
+        .catch(error => {
+          this.errors.push(error)
+          console.log(error)
+        })
     }
   }
+}
 </script>
 
 <style scoped>
