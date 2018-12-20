@@ -19,25 +19,27 @@
               <input class="form__input" v-model.trim="$v.devicename.$model"/>
             </div>
             <div class="error" v-if="!$v.devicename.required">Name is Required</div>
+
             <div class="form-group" :class="{ 'form-group--error': $v.price.$error }">
-              <label class="form-control-label" name="price">Price (Must be greater than 0)</label>
+              <label class="form-control-label" name="price">Price </label>
               <input class="form__input" type="number" v-model.trim="price"/>
             </div>
-            <div class="error" v-if="!$v.rating.between">Rating must be greater than 0</div>
+            <div class="error" v-if="!$v.price.between">Price must be greater than 0</div>
+
             <div class="form-group" :class="{ 'form-group--error': $v.rating.$error }">
-              <label class="form-control-label" name="rating">Rating (Must be greater than 0)</label>
+              <label class="form-control-label" name="rating">Rating </label>
               <input class="form__input" type="number" v-model.trim="rating"/>
             </div>
             <div class="error" v-if="!$v.rating.between">Rating must be greater than 0</div>
 
             <div class="form-group" :class="{ 'form-group--error': $v.ram.$error }">
-              <label class="form-control-label" name="ram">RAM (Must be greater than 0)</label>
+              <label class="form-control-label" name="ram">RAM</label>
               <input class="form__input" type="number" v-model.trim="ram"/>
             </div>
             <div class="error" v-if="!$v.ram.between">RAM must be greater than 0</div>
 
             <div class="form-group" :class="{ 'form-group--error': $v.camera.$error }">
-              <label class="form-control-label" name="camera">Camera (Must be greater than 0)</label>
+              <label class="form-control-label" name="camera">Camera </label>
               <input class="form__input" type="number" v-model.trim="camera"/>
             </div>
             <div class="error" v-if="!$v.camera.between">Camera must be greater than 0</div>
@@ -48,16 +50,16 @@
             </div>
 
             <div class="form-group" :class="{ 'form-group--error': $v.screen.$error }">
-              <label class="form-control-label" name="screen">Screen (Must be greater than 0)</label>
+              <label class="form-control-label" name="screen">Screen</label>
               <input class="form__input" type="number" v-model.trim="screen"/>
             </div>
             <div class="error" v-if="!$v.screen.between">Screen must be greater than 0</div>
 
             <div class="form-group" :class="{ 'form-group--error': $v.battery.$error }">
-              <label class="form-control-label" name="battery">Battery (Must be greater than 0)</label>
+              <label class="form-control-label" name="battery">Battery </label>
               <input class="form__input" type="number" v-model.trim="battery"/>
             </div>
-            <div class="error" v-if="!$v.battery.between">Screen must be greater than 0</div>
+            <div class="error" v-if="!$v.battery.between">Battery must be greater than 0</div>
 
             <p>
               <button class="btn btn-secondary btn1" type="submit" :disabled="submitStatus === 'PENDING'">Add Device
@@ -78,7 +80,7 @@ import Vue from 'vue'
 import VueForm from 'vueform'
 import Vuelidate from 'vuelidate'
 import VueSweetalert from 'vue-sweetalert'
-import {required, minLength, between} from 'vuelidate/lib/validators'
+import {between, minLength, required} from 'vuelidate/lib/validators'
 
 Vue.use(VueForm, {
   inputClasses: {
