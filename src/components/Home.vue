@@ -1,26 +1,58 @@
 <template>
   <div class="hero">
-    <h1 class="vue-title">WELCOME TO TECH COMP</h1>
+    <div class="hometitle">
+      <h1 class="vue-title">WELCOME TO TECH COMP</h1>
+    </div>
 
-    <table align="center">
-      <tr>
-        <td>
-          <p class="lead"><b><i>Time for a change !!</i></b>
-          <p>Out with Boring Prumt - Giving has never been so easy.</p>
-          <p>Just click <a href="/donate">here</a> to go to</p>
-          <p>the Donation page and empty your wallet</p>
-        </td>
-        <td>
-        </td>
-      </tr>
-    </table>
-
-    <p></p>
-    <p class="lead">This is the homepage of your <b>MEVN</b> Web app</p>
+    <br>
+    <div>
+      <b-card-group deck class="deck">
+        <b-card title="create."
+                img-src="https://i.imgur.com/p1UZapd.png"
+                img-alt="Img"
+                img-top>
+          <p class="card-text">
+            Create user accounts as well as devices, each with their own unique specs!
+          </p>
+          <div slot="footer">
+            <small class="text-muted">*--*</small>
+          </div>
+        </b-card>
+        <b-card title="update."
+                img-src="https://i.imgur.com/yyooRMl.png"
+                img-alt="Img"
+                img-top>
+          <p class="card-text">
+            Got something wrong? Wrong name or maybe incorrect specs? Easily update any device as you need!
+          </p>
+          <div slot="footer">
+            <small class="text-muted">*--*</small>
+          </div>
+        </b-card>
+        <b-card title="delete."
+                img-src="https://i.imgur.com/eAUsGu3.png"
+                img-alt="Img"
+                img-top>
+          <p class="card-text">
+            Delete the devices or users that you want out of the database!
+          </p>
+          <div slot="footer">
+            <small class="text-muted">*--*</small>
+          </div>
+        </b-card>
+      </b-card-group>
+    </div>
+    <br>
+    <p id="author">BY LUKE FOX</p>
   </div>
 </template>
 
 <style>
+  #author {
+    color: #fb9919;
+    font: bold 15px arial;
+    margin-top: 20px;
+  }
   .hero {
     margin-top: 150px;
     align-items: center;
@@ -39,10 +71,27 @@
     margin: 0 auto;
   }
 
+  .hometitle h1 {
+    font: bold 100px arial, sans-serif;
+    background-color: #565656;
+    color: transparent;
+    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5);
+    -webkit-background-clip: text;
+  }
+
   .vue-title {
-    font-size: 50pt;
-    margin-bottom: 10px;
-    color: orange;
+    font: bold 100px arial, sans-serif;
+    text-transform: uppercase;
+    color: #fb9919;
+  }
+
+  vue-title.shadow {
+
+  }
+
+  .deck {
+    width: 50%;
+    margin: auto;
   }
 
 </style>

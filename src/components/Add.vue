@@ -2,7 +2,8 @@
   <div id="app" class="hero">
     <div class="container mt-3 mt-sm-5">
       <div class="row justify-content-center">
-          <device-form :device="device" deviceBtnTitle="Add Device" @device-is-created-updated="submitDevice"></device-form>
+        <device-form :device="device" deviceBtnTitle="Add Device"
+                     @device-is-created-updated="submitDevice"></device-form>
       </div><!-- /row -->
     </div><!-- /container -->
   </div>

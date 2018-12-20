@@ -11,10 +11,18 @@ import burger from 'vue-burger-menu'
 import VueParticles from 'vue-particles'
 import VueAnime from 'vue-animejs'
 
+import Vuesax from 'vuesax'
+import 'vuesax/dist/vuesax.css' // Vuesax styles
+
+import VueTyper from 'vue-typer'
+
+Vue.use(Vuesax)
+
 Vue.use(BootstrapVue)
 Vue.use(VueParticles)
 Vue.use(VueAnime)
 Vue.use(burger)
+Vue.use(VueTyper)
 
 Vue.config.productionTip = false
 

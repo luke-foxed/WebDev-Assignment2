@@ -28,6 +28,7 @@
         <li><router-link to="/users"><a class="fa fa-users"> USERS</a></router-link></li>
         <li><router-link to="/add"><a class="fa fa-plus-square"> ADD DEVICES</a></router-link></li>
         <li><router-link to="/create"><a class="fa fa-user"> CREATE ACCOUNT</a></router-link></li>
+        <li><router-link to="/contact"><a class="fa fa-question-circle"> CONTACT</a></router-link></li>
       </Slide>
     </template>
 

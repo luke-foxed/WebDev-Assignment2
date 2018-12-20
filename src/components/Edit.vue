@@ -2,15 +2,15 @@
   <div id="app1" class="hero">
     <div class="container mt-3 mt-sm-5">
       <div class="row justify-content-center">
-        <div class="col-md-6">
-          <template v-if="childDataLoaded">
-            <device-form :device="device" deviceBtnTitle="Update Device"
-                         @device-is-created-updated="updateDevice"></device-form>
-          </template>
-        </div><!-- /col -->
-      </div><!-- /row -->
-    </div><!-- /container -->
-  </div>
+
+        <template v-if="childDataLoaded">
+          <device-form :device="device" deviceBtnTitle="Update Device"
+                       @device-is-created-updated="updateDevice"></device-form>
+        </template>
+      </div><!-- /col -->
+    </div><!-- /row -->
+  </div><!-- /container -->
+
 </template>
 
 <script>
@@ -38,7 +38,6 @@ export default {
       devicetype: '',
       messagetitle: ' Add Device ',
       devicename: '',
-      paymenttype: 'Direct',
       price: 0,
       upvotes: 0,
       rating: 0,

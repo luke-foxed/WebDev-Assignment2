@@ -2,13 +2,19 @@
   <div class="hero">
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
     <div id="app1">
-      <v-client-table :columns="columns" :data="devices" :options="options">
+      <v-client-table :columns="columns" @row-click="onRowClick" :data="devices" :options="options" >
         <a slot="upvote" slot-scope="props" class="fa fa-thumbs-up fa-2x" @click="upvote(props.row._id)">
         </a>
         <a slot="remove" slot-scope="props" class="fa fa-trash-o fa-2x" @click="deleteDevice(props.row._id)"></a>
         <a slot="edit" slot-scope="props" class="fa fa-edit fa-2x" @click="editDevice(props.row._id)"></a>
+        <a slot="uri" slot-scope="props" class="fa fa-eye" target="_blank" :href="props.row.uri" ></a>
 
       </v-client-table>
+      <b-card class="card" bg-variant="light"
+              header="Selected Device Specs"
+              text-variant="black">
+        <p class="card-text">{{cardtext}}</p>
+      </b-card>
     </div>
   </div>
 </template>
@@ -25,10 +31,11 @@ export default {
   data () {
     return {
       messagetitle: ' Device List ',
+      cardtext: '  ',
       props: ['_id'],
       devices: [],
       errors: [],
-      columns: ['_id', 'producttype', 'productname', 'upvotes', 'rating', 'price', 'specs', 'upvote', 'edit', 'remove'],
+      columns: ['_id', 'producttype', 'productname', 'upvotes', 'rating', 'price', 'specs', 'upvote', 'edit', 'remove', 'view'],
       options: {
         childRow: 'upvote',
         perPage: 10,
@@ -54,6 +61,10 @@ export default {
     this.loadDevices()
   },
   methods: {
+    onRowClick (event) {
+      console.log('YES', event)
+      this.cardtext = JSON.stringify(event.row.specs)
+    },
     loadDevices: function () {
       console.log('INSIDE')
       DeviceService.fetchDevices()
@@ -138,6 +149,12 @@ export default {
     text-align: center;
     font-size: 45pt;
     margin-bottom: 10px;
+  }
+  .card{
+    color: orange;
+    background-color: orange;
+    font-weight: bold;
+    font-size: 20px;
   }
 
 </style>

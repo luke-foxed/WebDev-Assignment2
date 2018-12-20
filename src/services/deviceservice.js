@@ -30,5 +30,8 @@ export default {
   },
   fetchUsers () {
     return Api().get('/useraccounts')
+  },
+  deleteUser (id) {
+    return Api().delete(`/useraccounts/delete/${id}`)
   }
 }

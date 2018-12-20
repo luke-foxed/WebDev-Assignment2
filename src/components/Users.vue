@@ -3,10 +3,7 @@
     <h3 class="vue-title"><i class="fa fa-list" style="padding: 3px"></i>{{messagetitle}}</h3>
     <div id="app1">
       <v-client-table :columns="columns" :data="users" :options="options">
-        <a slot="upvote" slot-scope="props" class="fa fa-thumbs-up fa-2x" @click="upvote(props.row._id)">
-        </a>
-        <a slot="remove" slot-scope="props" class="fa fa-trash-o fa-2x" @click="deleteDevice(props.row._id)"></a>
-        <a slot="edit" slot-scope="props" class="fa fa-edit fa-2x" @click="editDevice(props.row._id)"></a>
+        <a slot="remove" slot-scope="props" class="fa fa-trash-o fa-2x" @click="deleteUser(props.row._id)"></a>
 
       </v-client-table>
     </div>
@@ -28,14 +25,13 @@ export default {
       props: ['_id'],
       users: [],
       errors: [],
-      columns: ['_id', 'username', 'edit', 'remove'],
+      columns: ['_id', 'username', 'remove'],
       options: {
         perPage: 10,
         filterable: ['id', 'username'],
         headings: {
           _id: 'ID',
           username: 'Username',
-          edit: 'Edit',
           remove: 'Remove'
         }
       }
@@ -60,12 +56,7 @@ export default {
         })
     },
 
-    editDevice: function (id) {
-      this.$router.params = id
-      this.$router.push('edit')
-    },
-
-    deleteDevice: function (id) {
+    deleteUser: function (id) {
       this.$swal({
         title: 'Are you totaly sure?',
         text: 'You can\'t Undo this action',
@@ -78,14 +69,14 @@ export default {
       }).then((result) => {
         console.log('SWAL Result : ' + result)
         if (result === true) {
-          DeviceService.deleteDevice(id)
+          DeviceService.deleteUser(id)
             .then(response => {
               // JSON responses are automatically parsed.
               this.message = response.data
               console.log(this.message)
-              this.loadDevices()
+              this.loadUsers()
               // Vue.nextTick(() => this.$refs.vuetable.refresh())
-              this.$swal('Deleted', 'You successfully deleted this Device ' + JSON.stringify(response.data, null, 5), 'success')
+              this.$swal('Deleted', 'You successfully deleted this User ' + JSON.stringify(response.data, null, 5), 'success')
             })
             .catch(error => {
               this.$swal('ERROR', 'Something went wrong trying to Delete ' + error, 'error')
@@ -93,7 +84,7 @@ export default {
               console.log(error)
             })
         } else {
-          this.$swal('Cancelled', 'Your Donation still Counts!', 'info')
+          this.$swal('Cancelled')
         }
       })
     }
