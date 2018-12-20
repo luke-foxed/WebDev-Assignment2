@@ -48,7 +48,7 @@ The user model contains the following fields:
 
 ## PRODUCT MODEL:
 The product model contains the following information:
-- ‘devicename’: The product name
+- ‘productname’: The product name
 - ‘producttype’: The product type (phone, laptop or
 - ‘price’: The price of the product
 - ‘rating’: The products rating (must be between 0-5 inclusive)
